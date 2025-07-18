@@ -1,0 +1,37 @@
+- name: VM'e Docker kurulumu yap
+  hosts: all
+  become: yes
+  tasks:
+    - name: apt update
+      apt:
+        update_cache: yes
+
+    - name: Gerekli paketleri kur
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - gnupg
+          - lsb-release
+        state: present
+
+    - name: Docker GPG anahtarını ekle
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Docker repo ekle
+      apt_repository:
+        repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+    - name: Docker'ı kur
+      apt:
+        name: docker-ce
+        state: latest
+
+    - name: Docker servisini başlat
+      service:
+        name: docker
+        state: started
+        enabled: true
