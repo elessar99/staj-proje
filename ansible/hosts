@@ -1,2 +1,2 @@
-192.168.1.75
-
+[all]
+192.168.1.75 ansible_user=vboxuser ansible_ssh_pass=123 ansible_become_pass=123
