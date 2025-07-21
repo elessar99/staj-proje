@@ -8,10 +8,6 @@
 
 ## Kurulum
 
-1. **Terraform ile Altyapıyı Oluşturma:**
-
-   Öncelikle Terraform'u başlatın:
-
    ```bash
    terraform init
    
