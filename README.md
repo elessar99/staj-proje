@@ -1,4 +1,4 @@
-# Proje Adı
+# Staj proje
 
 Bu proje, [projenin kısa açıklaması] için oluşturulmuştur. Terraform ve Ansible kullanılarak [hedeflenen işlem/amaç] gerçekleştirilir.
 
