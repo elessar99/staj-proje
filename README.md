@@ -19,3 +19,13 @@
    terraform apply
    
    ansible-playbook -i hosts docker-install.yml
+
+   scp -r .\docker-app vboxuser@'ip':/home/vboxuser/
+
+   ssh vboxuser@'ip'
+
+   cd ~/docker-app
+
+   docker build -t staj-flask-app .
+
+   docker run -d -p 5000:5000 staj-flask-app
