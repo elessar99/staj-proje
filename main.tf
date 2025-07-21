@@ -10,17 +10,18 @@ terraform {
 provider "virtualbox" {}
 
 resource "virtualbox_vm" "linux_vm" {
-  name   = "staj-linux"
+  name   = "staj-linux-0"
   image  = "./ubuntu.ova"
-  cpus   = 2
-  memory = "2048 mib"
+  cpus   = 4
+  memory = "4096 mib"
 
   network_adapter {
-    type           = "bridged"
-  }
-
-  # ssh bilgileri bu providerda desteklenmiyor, bu yüzden kaldırıyoruz.
+      type           = "bridged"        
+      host_interface = "MediaTek Wi-Fi 6E MT7922 (RZ616) 160MHz PCIe Adapter"  
+    }
+  
 }
+
 
 # output "ip_address" {
 #   value = virtualbox_vm.linux_vm.ipv4_address
