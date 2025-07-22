@@ -13,6 +13,10 @@
    
    $env:Path += ";C:\Program Files\Oracle\VirtualBox"
    terraform apply
+
+   terraform output -raw ip_address | ForEach-Object { python script.py $_ }
+
+   cd cd ansible/
    
    ansible-playbook -i hosts docker-install.yml
    ansible-playbook -i hosts docker-install.yml --ssh-extra-args="-o StrictHostKeyChecking=no"
