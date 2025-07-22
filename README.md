@@ -18,6 +18,7 @@
    ansible-playbook -i hosts docker-install.yml --ssh-extra-args="-o StrictHostKeyChecking=no"
 
    scp -r .\docker-app vboxuser@'ip':/home/vboxuser/
+   scp -r ./docker-app vboxuser@192.168.1.43:/home/vboxuser/
 
    ssh vboxuser@'ip'
 
