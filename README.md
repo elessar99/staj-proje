@@ -15,6 +15,7 @@
    terraform apply
    
    ansible-playbook -i hosts docker-install.yml
+   ansible-playbook -i hosts docker-install.yml --ssh-extra-args="-o StrictHostKeyChecking=no"
 
    scp -r .\docker-app vboxuser@'ip':/home/vboxuser/
 
