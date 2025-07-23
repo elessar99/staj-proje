@@ -28,9 +28,9 @@
 
    cd ~/docker-app
 
-   docker build -t staj-app .
-   docker run -d -p 5000:5000 -p 3000:3000 staj-app
+   docker compose build
+   docker compose up
 
-   docker build -t staj-flask-app .
-
-   docker run -d -p 5000:5000 staj-flask-app
+   cd ~/docker-app/frontend/app
+   sudo chown -R nginx:nginx .
+   sudo chmod -R 755 .
