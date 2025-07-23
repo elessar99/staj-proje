@@ -28,6 +28,9 @@
 
    cd ~/docker-app
 
+   docker build -t staj-app .
+   docker run -d -p 5000:5000 -p 3000:3000 staj-app
+
    docker build -t staj-flask-app .
 
    docker run -d -p 5000:5000 staj-flask-app
