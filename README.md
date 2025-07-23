@@ -12,7 +12,7 @@
    terraform init
    
    $env:Path += ";C:\Program Files\Oracle\VirtualBox"
-   terraform apply
+   terraform apply -var="vm_name="
 
    terraform output -raw ip_address | ForEach-Object { python script.py $_ }
 
