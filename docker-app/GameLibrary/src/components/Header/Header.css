@@ -1,0 +1,110 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 2em;
+    background-color: black;
+    max-width: 1200px;
+    margin: auto;
+    border: 5px rgb(10, 10, 10) solid;
+    color: red;
+}
+.headerLogo{
+    text-decoration: none;
+    font-size: 1.3em;
+    align-self: center;
+    color: red;
+}
+.headerLogo:visited{
+    color: red;
+}
+.headerNavbar{
+    align-self: center;
+    display: flex;
+}
+.headerNavbarList{
+    display: none;
+    flex-direction: column;
+    padding-top: 12px;
+    background-color: rgba(0, 0, 0, 0.45);
+    position: absolute;
+    z-index: 2;
+    list-style-type: none;
+    list-style-position: inside;
+    border: 2px black solid;
+}
+.headerNavbarList{
+    display: none;
+    flex-direction: column;
+    padding-top: 12px;
+    background-color: rgba(0, 0, 0, 0.45);
+    position: absolute;
+    z-index: 2;
+    list-style-type: none;
+    list-style-position: inside;
+    border: 2px black solid;
+}
+@media screen and (max-width:600px) {
+    .headerMobile{
+        display: flex;
+        background-color: rgba(0, 0, 0, 7);
+    }
+    .header{
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        border: 0;
+    }
+    .headerNavbar{
+        margin: 0.5em 0 0 0;
+        flex-wrap: wrap;
+    }
+    .headerNavbarBtn{
+        margin: 0.2em 0.1em;
+    }
+}
+@media screen and (min-width:601px) {
+    #pcDropdown:hover #pcDropdownMenu{
+        display: flex;
+    }
+    
+    #browserDropdown:hover #browserDropdownMenu{
+        display: flex;
+    }
+}
+
+
+
+.headerNavbarListBtn{
+    text-align: center;
+    width: 100%;
+    padding: 3px 0;
+    margin: 1px 2px;
+    align-self: center;
+    color: red;
+    text-decoration: none;
+}
+.headerNavbarListBtn:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.headerNavbarBtn{
+    text-decoration: none;
+    align-self: center;
+    border: 2px black solid;
+    padding: 0.3em 0.8em;
+    user-select: none;
+    color: red;
+}
+.headerNavbarBtn:visited{
+    color: red;
+}
+.headerNavbarBtn:hover{
+    background-color: rgb(20, 20, 20);
+    border: 2px rgb(50, 50, 50) solid;
+    border-radius: 5px 20px;
+    cursor: pointer;
+}
+@media screen and (max-width:600px) {
+    .headerNavbarListBtn{
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}

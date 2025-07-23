@@ -1,0 +1,31 @@
+.newsPage{
+    max-width: 1200px;
+    display: grid;
+    margin: auto;
+}
+.newsContainer{
+    margin: 1em 0 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.testDeneme{
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 5px black solid;
+    padding: 10px;
+}
