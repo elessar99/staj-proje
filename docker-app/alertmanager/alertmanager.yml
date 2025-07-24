@@ -1,0 +1,15 @@
+global:
+  smtp_from: 'erden0652@gmail.com'  # Gönderici olarak kullanılacak Gmail adresi
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_auth_username: 'erden0652@gmail.com'
+  smtp_auth_password: 'pyva bkps cwrg luyn'  # Oluşturduğunuz Uygulama Şifresi
+  smtp_require_tls: true  # TLS zorunlu
+
+route:
+  receiver: 'email-team'
+
+receivers:
+- name: 'email-team'
+  email_configs:
+  - to: 'erdener052@hotmail.com'  # Alarmların gideceği asıl e-posta (Hotmail)
+    send_resolved: true  # Sorun çözüldüğünde bildirim gönder

@@ -1,0 +1,75 @@
+\docker-app\prometheus\prometheus.yml
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - /etc/prometheus/alerts.yml
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+
+  - job_name: "node-exporter"
+    static_configs:
+      - targets: ["node-exporter:9100"]
+
+  - job_name: "backend"
+    static_configs:
+      - targets: ["backend:5000"]
+
+  - job_name: "frontend"
+    static_configs:
+      - targets: ["frontend:8080"]
+
+-------------------------------------------------------
+
+\docker-app\prometheus\Dockerfile
+
+# Resmi Prometheus imajını kullan
+FROM prom/prometheus:latest
+
+# Varsayılan yapılandırmayı kopyala (isteğe bağlı: özelleştirmek için)
+COPY prometheus.yml /etc/prometheus/prometheus.yml
+
+# Prometheus'u başlat
+EXPOSE 9090
+CMD ["--config.file=/etc/prometheus/prometheus.yml"]
+
+-------------------------------------------------------
+
+\docker-app\prometheus\alerts.yml
+
+groups:
+- name: system-alerts
+  rules:
+  - alert: HighCPUUsage
+    expr: (100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 80
+    for: 1m
+    labels:
+      severity: warning
+    annotations:
+      summary: "High CPU Usage ({{ $value }}%)"
+      description: "CPU usage is above 80% on {{ $labels.instance }}"
+
+-------------------------------------------------------
+
+\docker-app\alertmanager\alertmanager.yml
+
+global:
+  smtp_from: 'erden0652@gmail.com'  # Gönderici olarak kullanılacak Gmail adresi
+  smtp_smarthost: 'smtp.gmail.com:587'
+  smtp_auth_username: 'erden0652@gmail.com'
+  smtp_auth_password: 'pyva bkps cwrg luyn'  # Oluşturduğunuz Uygulama Şifresi
+  smtp_require_tls: true  # TLS zorunlu
+
+route:
+  receiver: 'email-team'
+
+receivers:
+- name: 'email-team'
+  email_configs:
+  - to: 'erdener052@hotmail.com'  # Alarmların gideceği asıl e-posta (Hotmail)
+    send_resolved: true  # Sorun çözüldüğünde bildirim gönder

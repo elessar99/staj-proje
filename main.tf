@@ -16,7 +16,7 @@ provider "virtualbox" {}
   resource "virtualbox_vm" "linux_vm" {
     name   = var.vm_name
     image  = "./ubuntu-1.ova"
-    cpus   = 4
+    cpus   = 6
     memory = "8192 mib"
 
   network_adapter {

@@ -1,0 +1,43 @@
+pyva bkps cwrg luyn
+
+
+
+
+sudo chown -R 472:472 grafana/data
+sudo chmod -R 755 prometheus alertmanager
+
+cd ~/docker-app/frontend/app
+sudo chown -R nginx:nginx .
+sudo chmod -R 755 .
+
+
+
+.\script.ps1 -vm_name ""
+
+terraform initss
+
+$env:Path += ";C:\Program Files\Oracle\VirtualBox"
+terraform apply -var="vm_name="
+
+terraform output -raw ip_address | ForEach-Object { python script.py $_ }
+
+cd cd ansible/
+
+ansible-playbook -i hosts docker-install.yml
+ansible-playbook -i hosts docker-install.yml --ssh-extra-args="-o StrictHostKeyChecking=no"
+
+scp -r .\docker-app vboxuser@'ip':/home/vboxuser/
+scp -r ./docker-app vboxuser@192.168.1.43:/home/vboxuser/
+
+ssh vboxuser@'ip'
+
+cd ~/docker-app
+
+docker compose build
+docker compose up
+
+cd ~/docker-app/frontend/app
+sudo chown -R nginx:nginx .
+sudo chmod -R 755 .
+
+sudo apt install stress && stress --cpu 6 --timeout 5m

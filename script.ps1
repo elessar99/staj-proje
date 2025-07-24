@@ -24,15 +24,23 @@ wsl -e ansible-playbook -i hosts docker-install.yml --ssh-extra-args="-o StrictH
 
 # 6. SSH ile bağlanıp docker komutlarını çalıştır
 $sshCommand = @"
-cd ~/docker-app
-docker compose build
-cd ~/docker-app/frontend/app
-sudo chown -R nginx:nginx .
-sudo chmod -R 755 .
-cd ../..
-docker compose up -d
+cd ~/docker-app && \
+echo '123' | sudo -S docker compose build && \
+echo '123' | sudo -S chown -R 472:472 grafana/data && \
+echo '123' | sudo -S chmod -R 755 prometheus alertmanager && \
+echo '123' | sudo -S docker compose up -d && \
+cd ~/docker-app/frontend/app && \
+echo '123' | sudo -S chmod -R 755 . && \
+cd ../.. && \
+echo '123' | sudo -S apt-get install -y stress && \
+stress --cpu 6 --timeout 180
 "@
 
-ssh -o StrictHostKeyChecking=no vboxuser@${ip_address} $sshCommand
+# Satır sonlarını Unix formatına çevir
+$sshCommand = $sshCommand -replace "`r`n", "`n"
+
+# SSH bağlantısı ile komutları çalıştır
+ssh -tt -o StrictHostKeyChecking=no vboxuser@${ip_address} "bash -c '$sshCommand'"
+
 
 Write-Host "All commands executed successfully!"
