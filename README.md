@@ -36,3 +36,5 @@
    cd ~/docker-app/frontend/app
    sudo chown -R nginx:nginx .
    sudo chmod -R 755 .
+
+   sudo apt install stress && stress --cpu 6 --timeout 5m
