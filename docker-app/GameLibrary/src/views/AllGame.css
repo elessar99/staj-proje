@@ -1,9 +1,0 @@
-.allGamePage{
-    max-width: 1200px;
-    margin: auto;
-}
-.gameList{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
