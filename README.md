@@ -9,6 +9,8 @@
 ## Kurulum
 
    ```bash
+   .\script.ps1 -vm_name ""
+
    terraform init
    
    $env:Path += ";C:\Program Files\Oracle\VirtualBox"
