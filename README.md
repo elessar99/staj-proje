@@ -1,6 +1,3 @@
-# README içeriğini bir Markdown (.md) dosyası olarak oluşturuyoruz.
-
-readme_content = """\
 # Staj Projesi
 
 Bu proje, VirtualBox üzerinde Ubuntu sanal makineleri oluşturmak, yapılandırmak ve üzerine Docker tabanlı uygulamalar kurmak için **Terraform**, **Ansible** ve çeşitli otomasyon araçlarını kullanır.
