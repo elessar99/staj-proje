@@ -1,40 +1,26 @@
-# Staj proje
+# README içeriğini bir Markdown (.md) dosyası olarak oluşturuyoruz.
 
-## Ön Gereksinimler
+readme_content = """\
+# Staj Projesi
 
-- [Terraform](https://www.terraform.io/downloads.html) yüklü olmalıdır.
-- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) yüklü olmalıdır.
-- [Oracle VirtualBox](https://www.virtualbox.org/) yüklü olmalıdır ve PATH'e eklenmelidir.
+Bu proje, VirtualBox üzerinde Ubuntu sanal makineleri oluşturmak, yapılandırmak ve üzerine Docker tabanlı uygulamalar kurmak için **Terraform**, **Ansible** ve çeşitli otomasyon araçlarını kullanır.
 
-## Kurulum
+## 🔧 Ön Gereksinimler
 
-   ```bash
-   .\script.ps1 -vm_name ""
+Projenin sorunsuz çalışabilmesi için aşağıdaki yazılımların sisteminizde kurulu olması gerekmektedir:
 
-   terraform init
-   
-   $env:Path += ";C:\Program Files\Oracle\VirtualBox"
-   terraform apply -var="vm_name="
+- [Terraform](https://www.terraform.io/downloads.html)
+- [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- [Oracle VirtualBox](https://www.virtualbox.org/) (kurulum sonrası sistem PATH değişkenine eklenmiş olmalı)
 
-   terraform output -raw ip_address | ForEach-Object { python script.py $_ }
+Ayrıca aşağıdaki gereksinimler sağlanmalıdır:
 
-   cd cd ansible/
-   
-   ansible-playbook -i hosts docker-install.yml
-   ansible-playbook -i hosts docker-install.yml --ssh-extra-args="-o StrictHostKeyChecking=no"
+- VirtualBox için kullanılacak **Ubuntu imajında** şu paketler kurulu olmalıdır:
+  - `openssh-server`
+  - `virtualbox-guest-utils`
+- Ubuntu imajındaki kullanıcı adı **`vboxuser`** olmalıdır.
+- `vboxuser` kullanıcısının **sudo parolası `123`** olarak ayarlanmalı ya da projedeki komutlar bu duruma göre güncellenmelidir.
+- `main.tf` dosyasındaki aşağıdaki satırda kendi sisteminize uygun ağ arayüzü girilmelidir:
 
-   scp -r .\docker-app vboxuser@'ip':/home/vboxuser/
-   scp -r ./docker-app vboxuser@192.168.1.43:/home/vboxuser/
-
-   ssh vboxuser@'ip'
-
-   cd ~/docker-app
-
-   docker compose build
-   docker compose up
-
-   cd ~/docker-app/frontend/app
-   sudo chown -R nginx:nginx .
-   sudo chmod -R 755 .
-
-   sudo apt install stress && stress --cpu 6 --timeout 5m
+  ```hcl
+  host_interface = "..."
